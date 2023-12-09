@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskQuest</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="icon" type="image/x-icon" href="images/logo.png">
 </head>
 <body>
     <header>
-        <br>
-        <a href = "index.php"><img src="images/logo.png" height="8%" width = "8%" alt = "TaskQuest Logo"></a>
-        <a href="index.php">Home</a>
-        <a href="calendar.php">Calendar</a>
-        <a href="login.php">Login</a>
-        <a href="signup.php">Sign Up</a>
-        <div>
-            <button><i></i>
-            <i></i></button>
-            <div>
-                <?php if (isset($user)): ?>
-                    <a href="logout.php">Log Out</a>
-                <?php else: ?>
-                    <a href="login.php">Log In</a>
-                <?php endif; ?>
-                <a href="signup.php">Sign Up</a>
+        <nav>
+            <div class="logo">
+                <a href="index.php"><img src="images/logo.png" alt="TaskQuest Logo"></a>
             </div>
-        </div>
-        <br><br>
+            <ul class="nav-links">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="calendar.php">Calendar</a></li>
+                <?php if (isset($user)): ?>
+                    <li><a href="logout.php">Log Out</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Log In</a></li>
+                    <li><a href="signup.php">Sign Up</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </header>
+    <main>
+        <section>
+            <h1>Welcome to TaskQuest</h1>
+        </section>
+    </main>
 </body>
 </html>
