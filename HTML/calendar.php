@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 currentHour = taskEndHour;
                                 if (currentHour < workHoursEnd) {
                                     schedule.push(`${currentHour}:00 - ${currentHour+1}:00: Break`);
-                                    currentHour += 1; // Adding 30 minutes for the break
+                                    currentHour += 1; // Adding 1 hour for the break
                                 }
                                 } else {
                                 break; // If the task can't fit in the remaining work hours, stop scheduling
