@@ -1,3 +1,15 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $mysqli = require __DIR__ . "/database.php";
+    
+    $sql = "DELETE FROM tasks WHERE id = {$_POST['task-id']}";
+    
+    $result = $mysqli->query($sql);
+    
+    header('calendar.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +57,10 @@
                     <div class="type" id="type">Type</div>
                     <div class="priority" id="priority">Priority Level</div>
                     <div class="status" id="status">Current Status</div>
+                    <form method="post">
+                        <input type="hidden" name="task-id" id="task-id">
+                        <div class="remove" id="remove"></div>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -116,14 +132,30 @@
             type.textContent = '';
             priority.textContent = '';
             status.textContent = '';
+            const removeButton = document.getElementById('remove');
+            const button = document.createElement('div');
+            button.textContent = '';
+            button.id = 'remove';
+            button.class = 'remove';
+            removeButton.parentNode.replaceChild(button, removeButton);
         }
         else {
+            const task_id = document.getElementById('task-id');
+            task_id.value = tasks['id'];
             name.textContent = tasks['name'];
             description.textContent = tasks['description'];
             time.textContent = 'Due: ' + tasks['due_time'];
             type.textContent = 'Type: ' + tasks['type'];
             priority.textContent = 'Priority Level: ' + tasks['priority'];
             status.textContent = 'Status: ' + tasks['status'];
+
+            const removeButton = document.getElementById('remove');
+            const button = document.createElement('button');
+            button.textContent = 'Task Finished';
+            button.id = 'remove';
+            button.class = 'remove';
+            button.type = 'submit';
+            removeButton.parentNode.replaceChild(button, removeButton);
         }
     }
 
