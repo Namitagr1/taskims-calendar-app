@@ -72,6 +72,8 @@ nav {
 .calendar-day {
     width: calc(100% / 7);
     text-align: center;
+    position: relative;
+    right: -23px;
 }
 
 .calendar-day:hover {
