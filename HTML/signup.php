@@ -25,15 +25,41 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TaskQuest</title>
+    <title>TaskIms</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/signup-style.css">
     <link rel="icon" type="image/x-icon" href="../images/logo.png">
     <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
-    <script src="js/validation.js" defer></script>
+    <script src="../JS/validation.js" defer></script>
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <header>
+        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+        <style>
+            body {
+                font-family: 'Lexend';font-size: 22px;
+            }
+        </style>
+        <nav>
+            <div class="logo">
+                <a href="../index.php"><img src="../Images/logo.png" alt="TaskIms Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <?php if (isset($user)): ?>
+                    <li style="color: white;">Points: <?php echo $user['points'] ?></li>
+                    <li style="color: white;">Level: <?php echo (intdiv($user['points'], 500) + 1)?></li>
+                <?php endif; ?>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../HTML/calendar.php">Calendar</a></li>
+                <?php if (isset($user)): ?>
+                    <li><a href="../HTML/logout.php">Log Out</a></li>
+                <?php else: ?>
+                    <li><a href="../HTML/login.php">Log In</a></li>
+                    <li><a href="../HTML/signup.php">Sign Up</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
     <div id="starting-text">
         
         <br><h1>Signup</h1><br>
@@ -49,13 +75,13 @@ session_start();
             </div>
             <br>
             <div>
-                <label for="password" style="position: relative; right: 32px;">Password </label>
-                <input type="password" id="password" name="password" style="width: 200px; height: 40px; border: none; border-radius: 8px; background: #d0d2d6; position: relative; right: 32px;">
+                <label for="password" style="position: relative; right: 38px;">Password </label>
+                <input type="password" id="password" name="password" style="width: 200px; height: 40px; border: none; border-radius: 8px; background: #d0d2d6; position: relative; right: 38px;">
             </div>
             <br>
             <div>
-                <label for="password_confirmation" style="position: relative; right: 62.5px;">Confirm Password </label>
-                <input type="password" id="password_confirmation" name="password_confirmation" style="width: 200px; height: 40px; border: none; border-radius: 8px; background: #d0d2d6; position: relative; right: 62.5px;">
+                <label for="password_confirmation" style="position: relative; right: 85px;">Confirm Password </label>
+                <input type="password" id="password_confirmation" name="password_confirmation" style="width: 200px; height: 40px; border: none; border-radius: 8px; background: #d0d2d6; position: relative; right: 85px;">
             </div>
             <br>
             <button style="font-family: system-ui; font-size: 120%; padding: 5px 20px 8px 20px; position: relative;">Sign up</button>

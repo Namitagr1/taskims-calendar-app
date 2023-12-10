@@ -1,11 +1,38 @@
 <?php
+
+session_start();
+
+if (isset($_SESSION["user_id"])) {
+    
+    $mysqli = require __DIR__ . "/database.php";
+    
+    $sql = "SELECT * FROM user
+            WHERE id = {$_SESSION["user_id"]}";
+            
+    $result = $mysqli->query($sql);
+    
+    $user = $result->fetch_assoc();
+}
+
+?>
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mysqli = require __DIR__ . "/database.php";
     
     $sql = "DELETE FROM tasks WHERE id = {$_POST['task-id']}";
     
     $result = $mysqli->query($sql);
-    
+    if ($_POST['priority'] === "Low") {
+        $sql = "UPDATE user SET points = points + 50 WHERE id = {$_SESSION["user_id"]}";
+    }
+    elseif ($_POST['priority'] === "Medium") {
+        $sql = "UPDATE user SET points = points + 100 WHERE id = {$_SESSION["user_id"]}";
+    }
+    else {
+        $sql = "UPDATE user SET points = points + 150 WHERE id = {$_SESSION["user_id"]}";
+    }
+    $result = $mysqli->query($sql);
     header('calendar.php');
 }
 ?>
@@ -14,13 +41,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TaskQuest</title>
+    <title>TaskIms</title>
     <link rel="stylesheet" href="../CSS/calendar-styles.css">
     <link rel="stylesheet" href="../CSS/schedule-styles.css">
     <link rel="shortcut icon" href="../Images/logo.png" type="image/x-icon">
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <header>
+        <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+        <style>
+            body {
+                font-family: 'Lexend';font-size: 22px;
+            }
+        </style>
+        <nav>
+            <div class="logo">
+                <a href="../index.php"><img src="../Images/logo.png" alt="TaskIms Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <?php if (isset($user)): ?>
+                    <li style="color: white;">Points: <?php echo $user['points'] ?></li>
+                    <li style="color: white;">Level: <?php echo (intdiv($user['points'], 500) + 1)?></li>
+                <?php endif; ?>
+                <li><a href="../index.php">Home</a></li>
+                <li><a href="../HTML/calendar.php">Calendar</a></li>
+                <?php if (isset($user)): ?>
+                    <li><a href="../HTML/logout.php">Log Out</a></li>
+                <?php else: ?>
+                    <li><a href="../HTML/login.php">Log In</a></li>
+                    <li><a href="../HTML/signup.php">Sign Up</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <div class="suggested-schedule">
             <h3>Suggested Schedule for Today</h3>
@@ -51,14 +104,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h3 id = "date-lister">Tasks Due</h3>
             <ul id="tasksDueList">
                 <li>
-                    <div class="task-name" id="task-name">Task Name</div>
-                    <div class="description" id="description">Description</div>
-                    <div class="due-time" id="due-time">Due Time</div>
-                    <div class="type" id="type">Type</div>
-                    <div class="priority" id="priority">Priority Level</div>
-                    <div class="status" id="status">Current Status</div>
                     <form method="post">
+                        <div class="task-name" id="task-name">Task Name</div>
+                        <div class="description" id="description">Description</div>
+                        <div class="due-time" id="due-time">Due Time</div>
+                        <div class="type" id="type">Type</div>
+                        <div class="priority" id="priority">Priority Level</div>
+                        <div class="status" id="status">Current Status</div>
                         <input type="hidden" name="task-id" id="task-id">
+                        <input type="hidden" name="priority" id="priority-level">
                         <div class="remove" id="remove"></div>
                     </form>
                 </li>
@@ -142,6 +196,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         else {
             const task_id = document.getElementById('task-id');
             task_id.value = tasks['id'];
+            const priority_level = document.getElementById('priority-level');
+            priority_level.value = tasks['priority'];
             name.textContent = tasks['name'];
             description.textContent = tasks['description'];
             time.textContent = 'Due: ' + tasks['due_time'];
@@ -151,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             const removeButton = document.getElementById('remove');
             const button = document.createElement('button');
-            button.textContent = 'Task Finished';
+            button.textContent = 'Task Finished?';
             button.id = 'remove';
             button.class = 'remove';
             button.type = 'submit';
