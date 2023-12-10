@@ -13,18 +13,7 @@
   </header>
 
   <main>
-    <div class="task-list">
-      <h2>Today's Tasks</h2>
-      <ul id="tasks">
-        <!-- Tasks added through JavaScript -->
-      </ul>
-      <form id="taskForm">
-        <input type="text" id="taskInput" placeholder="Enter task...">
-        <button type="submit">Add Task</button>
-      </form>
-    </div>
+    <!-- Reformatting calendar, will update after remaking the page -->
   </main>
-
-  <script src="../JS/trial-code.js"></script>
 </body>
 </html>
