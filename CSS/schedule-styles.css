@@ -1,0 +1,48 @@
+.suggested-schedule {
+    float: left;
+    width: 30%;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.suggested-schedule h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.suggested-schedule ul {
+    list-style: none;
+    padding: 0;
+}
+
+.suggested-schedule li {
+    margin-bottom: 5px;
+}
+
+.tasks-due {
+    float: right;
+    width: 30%;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.tasks-due h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tasks-due ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tasks-due li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task-name {
+    font-weight: bold;
+}

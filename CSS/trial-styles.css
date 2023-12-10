@@ -1,0 +1,39 @@
+
+  .task-list {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  a:visited {
+    color: white;
+  }
+
+  #tasks {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #tasks li {
+    margin-bottom: 10px;
+  }
+  
+  form {
+    margin-top: 10px;
+    display: flex;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  button {
+    padding: 8px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

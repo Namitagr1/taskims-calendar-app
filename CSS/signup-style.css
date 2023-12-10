@@ -1,15 +1,16 @@
+* {
+	text-align: center;
+}
 body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: 'Lexend';
     background-color: #3b7cb7;
     color: #333;
     line-height: 1.6;
 }
-
 header {
     background-color: #3c434f;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -45,23 +46,20 @@ nav {
     height: 50px;
     width: auto;
 }
-
-main {
-    padding: 40px;
-    text-align: center;
+hr {
+	height: 5px;
+	background: black;
+	margin: 0px auto;
 }
-
-.hero {
-    padding: 50px 0;
-}
-
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: black;
-}
-
-.hero p {
-    font-size: 1.2em;
+a {
+    text-decoration: none;
     color: white;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #FF0000;
+}
+label {
+	white-space: pre;
 }

@@ -1,0 +1,96 @@
+html, body {
+    background-color: #3b7cb7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+header {
+    background-color: #3c434f;
+    color: white;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.calendar {
+    background-color: white;
+    margin-top: 70px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calendar-header {
+    text-align: center;
+}
+
+.calendar-labels {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.calendar-day {
+    width: calc(100% / 7);
+    text-align: center;
+}
+
+.calendar-day:hover {
+    cursor: pointer;
+}
+
+.calendar-label {
+    width: calc(100% / 7);
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+
+.task-input {
+    margin-top: 20px;
+    text-align: center;
+}
