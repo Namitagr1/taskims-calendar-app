@@ -60,6 +60,7 @@ if (isset($_SESSION["user_id"])) {
             <h1>Welcome to TaskIms, Guest!</h1>
             <?php endif; ?>
             <p>The gamified way to keep your tasks in order, powered by an <span style="color: blue;">intelligent algorithm</span> to create suggested schedules.</p>
+            <br><br><a href="HTML/calendar.php"><img src="Images/get-started.png" alt="Get Started"></a>
         </section>
     </main>
 </body>
